@@ -105,7 +105,7 @@ echo '#define USR_VIMRC_FILE "~/.dvim/.vimrc"' >> $APP_PATH/vim/src/feature.h
 			--enable-rubyinterp \
 			--enable-multibyte \
 			--enable-luainterp \
-			--prefix $APP_PATH/vim
+			--prefix $APP_PATH/.vim
 
 make VIMRUNTIMEDIR=$APP_PATH/.vim
 
