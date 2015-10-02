@@ -114,8 +114,8 @@ make install
 rm /usr/local/bin/e
 rm /usr/bin/e
 
-ln -s $APP_PATH/vim/bin/vim /usr/local/bin/e
-ln -s $APP_PATH/vim/bin/vim /usr/bin/e
+ln -s $APP_PATH/.vim/bin/vim /usr/local/bin/e
+ln -s $APP_PATH/.vim/bin/vim /usr/bin/e
 
 sync_repo       "$APP_PATH/.vim/bundle/vundle" \
                 "$VUNDLE_URI" \
