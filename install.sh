@@ -27,15 +27,6 @@ debug() {
     fi
 }
 
-program_must_exist() {
-    program_exists $1
-
-    # throw error on non-zero return value
-    if [ "$?" -ne 0 ]; then
-        error "You must have '$1' installed to continue."
-    fi
-}
-
 variable_set() {
     if [ -z "$1" ]; then
         error "You must have your HOME environmental variable set to continue."
@@ -83,12 +74,21 @@ setup_vundle() {
 
 ############################ MAIN()
 variable_set "$HOME"
-program_must_exist "git"
 
-sudo apt-get install libncurses5-dev libgnome2-dev libgnomeui-dev \
-    libgtk2.0-dev libatk1.0-dev libbonoboui2-dev \
-    libcairo2-dev libx11-dev libxpm-dev libxt-dev python-dev \
-    ruby-dev git
+unamestr=`uname`
+if [[ "$unamestr" == 'Linux' ]]; then
+    sudo apt-get install libncurses5-dev libgnome2-dev libgnomeui-dev \
+                        libgtk2.0-dev libatk1.0-dev libbonoboui2-dev \
+                        libcairo2-dev libx11-dev libxpm-dev libxt-dev python-dev \
+                        ruby-dev git
+elif [[ "$unamestr" == 'Darwin' ]]; then
+    ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
+    xcode-select --install
+    brew update
+    brew install git
+fi
+
+
 
 git clone https://github.com/vim/vim.git $APP_PATH/vim 
 
