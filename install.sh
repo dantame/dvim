@@ -113,9 +113,13 @@ make install
 
 rm /usr/local/bin/e
 rm /usr/bin/e
+rm /usr/local/bin/dvim
+rm /usr/bin/dvim
 
 ln -s $APP_PATH/.vim/bin/vim /usr/local/bin/e
-ln -s $APP_PATH/.vim/bin/vim /usr/bin/e
+ln -s $APP_PATH/.vim/bin/vim /usr/local/bin/e
+ln -s $APP_PATH/.vim/bin/vim /usr/bin/dvim
+ln -s $APP_PATH/.vim/bin/vim /usr/bin/dvim
 
 sync_repo       "$APP_PATH/.vim/bundle/vundle" \
                 "$VUNDLE_URI" \
