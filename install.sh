@@ -4,6 +4,7 @@ app_name='dvim'
 [ -z "$REPO_URI" ] && REPO_URI='https://github.com/dantame/dvim.git'
 [ -z "$REPO_BRANCH" ] && REPO_BRANCH='master'
 [ -z "$VUNDLE_URI" ] && VUNDLE_URI="https://github.com/gmarik/vundle.git"
+debug_mode=0
 
 ############################  BASIC SETUP TOOLS
 msg() {
@@ -62,8 +63,8 @@ setup_vundle() {
     vim \
         -u "$1" \
         "+set nomore" \
-        "+BundleInstall!" \
-        "+BundleClean" \
+        "+PluginInstall!" \
+        "+PluginClean" \
         "+qall"
 
     export SHELL="$system_shell"
@@ -77,7 +78,8 @@ variable_set "$HOME"
 
 unamestr=`uname`
 if [[ "$unamestr" == 'Linux' ]]; then
-    sudo apt-get install libncurses5-dev libgnome2-dev libgnomeui-dev \
+    sudo apt-get update
+    sudo apt-get -y install libncurses5-dev libgnome2-dev libgnomeui-dev \
                         libgtk2.0-dev libatk1.0-dev libbonoboui2-dev \
                         libcairo2-dev libx11-dev libxpm-dev libxt-dev python-dev \
                         ruby-dev git
@@ -88,30 +90,38 @@ elif [[ "$unamestr" == 'Darwin' ]]; then
     brew install git
 fi
 
-
-
-git clone https://github.com/vim/vim.git $APP_PATH/vim 
-
-$APP_PATH/vim/configure --with-features=huge \
-						--enable-rubyinterp \
-						--enable-multibyte \
-						--enable-luainterp \
-						--prefix $APP_PATH/vim
-
-$APP_PATH/vim/make VIMRUNTIMEDIR=$APP_PATH/.vim
-
-ln -s /usr/local/bin/e $APP_PATH/vim/bin/vim
-
 sync_repo       "$APP_PATH" \
                 "$REPO_URI" \
                 "$REPO_BRANCH" \
                 "$app_name"
+
+git clone https://github.com/vim/vim.git $APP_PATH/vim 
+
+cd $APP_PATH/vim
+
+echo '#define USR_VIMRC_FILE "~/.dvim/.vimrc"' >> $APP_PATH/vim/src/feature.h
+
+./configure --with-features=huge \
+			--enable-rubyinterp \
+			--enable-multibyte \
+			--enable-luainterp \
+			--prefix $APP_PATH/vim
+
+make VIMRUNTIMEDIR=$APP_PATH/.vim
+
+make install
+
+rm /usr/local/bin/e
+rm /usr/bin/e
+
+ln -s $APP_PATH/vim/bin/vim /usr/local/bin/e
+ln -s $APP_PATH/vim/bin/vim /usr/bin/e
 
 sync_repo       "$APP_PATH/.vim/bundle/vundle" \
                 "$VUNDLE_URI" \
                 "master" \
                 "vundle"
 
-setup_vundle    "$APP_PATH/.vimrc.bundles.default"
+setup_vundle    "$APP_PATH/.vimrc"
 
 msg             "\nThanks for installing $app_name."
