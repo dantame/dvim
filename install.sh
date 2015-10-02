@@ -88,6 +88,7 @@ elif [[ "$unamestr" == 'Darwin' ]]; then
     xcode-select --install
     brew update
     brew install git
+    brew install ruby
 fi
 
 sync_repo       "$APP_PATH" \
