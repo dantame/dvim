@@ -107,7 +107,7 @@ echo '#define USR_VIMRC_FILE "~/.dvim/.vimrc"' >> $APP_PATH/vim/src/feature.h
 			--enable-luainterp \
 			--prefix $APP_PATH/.vim
 
-make VIMRUNTIMEDIR=$APP_PATH/.vim
+make
 
 make install
 
@@ -127,5 +127,7 @@ sync_repo       "$APP_PATH/.vim/bundle/vundle" \
                 "vundle"
 
 setup_vundle    "$APP_PATH/.vimrc"
+
+rm -rf $APP_PATH/vim
 
 msg             "\nThanks for installing $app_name."
