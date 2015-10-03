@@ -1,6 +1,8 @@
 " General {
     set nocompatible
+    syntax enable
     set background=dark         " Assume a dark background
+    colorscheme solarized
     filetype plugin indent on   " Automatically detect file types.
     syntax on                   " Syntax highlighting
     set mouse=a                 " Automatically enable mouse usage
