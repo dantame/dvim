@@ -96,7 +96,7 @@ sync_repo       "$APP_PATH" \
                 "$REPO_BRANCH" \
                 "$app_name"
 
-git clone https://github.com/vim/vim.git $APP_PATH/vim 
+git clone https://github.com/vim/vim.git $APP_PATH/vim
 
 cd $APP_PATH/vim
 
