@@ -1,8 +1,15 @@
 " General {
+
+    " Setup Bundle Support {
+        " The next three lines ensure that the ~/.dvim/.vim/bundle/ system works
+        filetype off
+        set rtp+=~/.dvim/.vim/bundle/vundle
+        call vundle#rc("~/.dvim/.vim/bundle")
+    " }
+
     set nocompatible
     syntax enable
     set background=dark         " Assume a dark background
-    colorscheme solarized
     filetype plugin indent on   " Automatically detect file types.
     syntax on                   " Syntax highlighting
     set mouse=a                 " Automatically enable mouse usage
@@ -27,7 +34,7 @@
 
     " Instead of reverting the cursor to the last position in the buffer, we
     " set it to the first line when editing a git commit message
-    au FileType gitcommit au! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0]) 
+    au FileType gitcommit au! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])
 " }
 
 " Vim UI {
@@ -137,13 +144,6 @@
 " }
 
 " Plugins {
-	" Setup Bundle Support {
-	    " The next three lines ensure that the ~/.dvim/.vim/bundle/ system works
-	    filetype off
-	    set rtp+=~/.dvim/.vim/bundle/vundle
-	    call vundle#rc()
-    " }
-
     " Deps {
         Plugin 'gmarik/vundle'
         Plugin 'MarcWeber/vim-addon-mw-utils'
@@ -159,10 +159,11 @@
         endif
     " }
 
-	" Plugin List {
-		" General {
-			Plugin 'scrooloose/nerdtree'
+    " Plugin List {
+        " General {
+            Plugin 'scrooloose/nerdtree'
             Plugin 'altercation/vim-colors-solarized'
+            colorscheme solarized
             Plugin 'spf13/vim-colors'
             Plugin 'tpope/vim-surround'
             Plugin 'tpope/vim-repeat'
@@ -185,51 +186,51 @@
         " }
 
         " General Programming {
-	        Plugin 'scrooloose/syntastic'
-	        Plugin 'tpope/vim-fugitive'
-	        Plugin 'scrooloose/nerdcommenter'
-	        Plugin 'tpope/vim-commentary'
-	        Plugin 'godlygeek/tabular'
+            Plugin 'scrooloose/syntastic'
+            Plugin 'tpope/vim-fugitive'
+            Plugin 'scrooloose/nerdcommenter'
+            Plugin 'tpope/vim-commentary'
+            Plugin 'godlygeek/tabular'
             Plugin 'editorconfig/editorconfig-vim'
-    	" }
+        " }
 
-    	" Javascript {
+        " Javascript {
             Plugin 'elzr/vim-json'
             Plugin 'groenewege/vim-less'
             Plugin 'pangloss/vim-javascript'
             Plugin 'briancollins/vim-jst'
             Plugin 'kchmck/vim-coffee-script'
-    	" }
-	    " HTML {
+        " }
+        " HTML {
             Plugin 'amirh/HTML-AutoCloseTag'
             Plugin 'hail2u/vim-css3-syntax'
             Plugin 'gorodinskiy/vim-coloresque'
-	    " }
+        " }
 
-	    " Ruby {
+        " Ruby {
             Plugin 'tpope/vim-rails'
             let g:rubycomplete_buffer_loading = 1
             Plugin 'thoughtbot/vim-rspec'
-	    " }
+        " }
 
-	    " Elixir {
-	        Plugin 'elixir-lang/vim-elixir'
-	        Plugin 'carlosgaldino/elixir-snippets'
-	        Plugin 'mattreduce/vim-mix'
-    	" }
+        " Elixir {
+            Plugin 'elixir-lang/vim-elixir'
+            Plugin 'carlosgaldino/elixir-snippets'
+            Plugin 'mattreduce/vim-mix'
+        " }
 
-		" Misc {
+        " Misc {
             Plugin 'tpope/vim-markdown'
             Plugin 'spf13/vim-preview'
             Plugin 'tpope/vim-cucumber'
             Plugin 'quentindecock/vim-cucumber-align-pipes'
-    	" }
+        " }
 
-	" }
+    " }
 
     " Config {
 
-    	" NerdTree {
+        " NerdTree {
             map <C-e> <plug>NERDTreeTabsToggle<CR>
             map <leader>e :NERDTreeFind<CR>
             nmap <leader>nt :NERDTreeFind<CR>
@@ -243,9 +244,9 @@
             let NERDTreeKeepTreeInNewTab=1
             let g:nerdtree_tabs_open_on_gui_startup=0
             let g:NERDShutUp=1
-    	" }
+        " }
 
-    	" Tabularize {
+        " Tabularize {
             nmap <Leader>a& :Tabularize /&<CR>
             vmap <Leader>a& :Tabularize /&<CR>
             nmap <Leader>a= :Tabularize /^[^=]*\zs=<CR>
@@ -324,15 +325,15 @@
         " }
 
         " RSpec {
-        	" RSpec.vim mappings
-    		map <Leader>t :call RunCurrentSpecFile()<CR>
-    		map <Leader>s :call RunNearestSpec()<CR>
-    		map <Leader>l :call RunLastSpec()<CR>
-    		map <Leader>a :call RunAllSpecs()<CR>
-       	" }
+            " RSpec.vim mappings
+            map <Leader>t :call RunCurrentSpecFile()<CR>
+            map <Leader>s :call RunNearestSpec()<CR>
+            map <Leader>l :call RunLastSpec()<CR>
+            map <Leader>a :call RunAllSpecs()<CR>
+        " }
 
         " Syntastic {
-            let g:syntastic_ruby_checkers = ['rubocop'] 
+            let g:syntastic_ruby_checkers = ['rubocop']
         " }
 
         " EditorConfig {
