@@ -38,7 +38,7 @@
 " }
 
 " Vim UI {
-	set tabpagemax=15               " Only show 15 tabs
+    set tabpagemax=15               " Only show 15 tabs
     set showmode                    " Display the current mode
     set cursorline                  " Highlight current line
 
@@ -73,10 +73,10 @@
 " Formatting {
     set nowrap                      " Do not wrap long lines
     set autoindent                  " Indent at the same level of the previous line
-    set shiftwidth=4                " Use indents of 4 spaces
+    set shiftwidth=2                " Use indents of 4 spaces
     set expandtab                   " Tabs are spaces, not tabs
-    set tabstop=4                   " An indentation every four columns
-    set softtabstop=4               " Let backspace delete indent
+    set tabstop=2                   " An indentation every two columns
+    set softtabstop=2               " Let backspace delete indent
     set nojoinspaces                " Prevents inserting two spaces after punctuation on a join (J)
     set splitright                  " Puts new vsplit windows to the right of the current
     set splitbelow                  " Puts new split windows to the bottom of the current
@@ -161,6 +161,7 @@
 
     " Plugin List {
         " General {
+            Plugin 'rking/ag.vim'
             Plugin 'scrooloose/nerdtree'
             Plugin 'altercation/vim-colors-solarized'
             colorscheme solarized
@@ -229,6 +230,9 @@
     " }
 
     " Config {
+        " Ag {
+          nnoremap <Leader>f :Ag<SPACE>
+        " }
 
         " NerdTree {
             map <C-e> <plug>NERDTreeTabsToggle<CR>
@@ -274,6 +278,7 @@
             let g:ctrlp_working_path_mode = 'ra'
             nnoremap <silent> <D-t> :CtrlP<CR>
             nnoremap <silent> <D-r> :CtrlPMRU<CR>
+            nnoremap <silent> <Leader>g :CtrlPTag<CR>
             let g:ctrlp_custom_ignore = {'dir':  '\.git$\|\.hg$\|\.svn$', 'file': '\.exe$\|\.so$\|\.dll$\|\.pyc$' }
 
             if executable('ag')
