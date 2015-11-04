@@ -82,6 +82,7 @@
     set splitbelow                  " Puts new split windows to the bottom of the current
     set pastetoggle=<F12>           " pastetoggle (sane indentation on pastes)
     autocmd BufNewFile,BufRead *.coffee set filetype=coffee
+    autocmd BufNewFile,BufRead *.slim set filetype=slim
 " }
 
 " Key (re)Mappings {
@@ -164,7 +165,7 @@
             Plugin 'rking/ag.vim'
             Plugin 'scrooloose/nerdtree'
             Plugin 'altercation/vim-colors-solarized'
-            colorscheme solarized
+            Plugin 'zenorocha/dracula-theme', {'rtp': 'vim/'}
             Plugin 'spf13/vim-colors'
             Plugin 'tpope/vim-surround'
             Plugin 'tpope/vim-repeat'
@@ -210,6 +211,7 @@
 
         " Ruby {
             Plugin 'tpope/vim-rails'
+            Plugin 'slim-template/vim-slim'
             let g:rubycomplete_buffer_loading = 1
             Plugin 'thoughtbot/vim-rspec'
         " }
@@ -321,7 +323,7 @@
             " powerline enabled font.
 
             let g:airline#extensions#tabline#enabled = 1
-            let g:airline_theme = 'solarized'
+            let g:airline_theme = 'bubblegum'
             if !exists('g:airline_powerline_fonts')
                 " Use the default set of separators with a few customizations
                 let g:airline_left_sep='›'  " Slightly fancier than '>'
@@ -346,3 +348,5 @@
         " }
     " }
 " }
+color dracula
+
