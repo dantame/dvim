@@ -14,6 +14,7 @@
     syntax on                   " Syntax highlighting
     set mouse=a                 " Automatically enable mouse usage
     set mousehide               " Hide the mouse cursor while typing
+    set t_Co=256
     scriptencoding utf-8
 
     if has('clipboard')
@@ -165,7 +166,7 @@
             Plugin 'rking/ag.vim'
             Plugin 'scrooloose/nerdtree'
             Plugin 'altercation/vim-colors-solarized'
-            Plugin 'zenorocha/dracula-theme', {'rtp': 'vim/'}
+            Plugin 'dracula/vim'
             Plugin 'spf13/vim-colors'
             Plugin 'tpope/vim-surround'
             Plugin 'tpope/vim-repeat'
@@ -173,6 +174,8 @@
             Plugin 'ctrlpvim/ctrlp.vim'
             Plugin 'kristijanhusak/vim-multiple-cursors'
             Plugin 'matchit.zip'
+            Plugin 'vim-airline/vim-airline-themes'
+            Plugin 'christoomey/vim-tmux-navigator'
             if (has("python") || has("python3"))
                 Plugin 'Lokaltog/powerline', {'rtp':'/powerline/bindings/vim'}
             else
