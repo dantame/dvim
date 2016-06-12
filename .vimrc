@@ -7,6 +7,8 @@
         call vundle#rc("~/.dvim/.vim/bundle")
     " }
 
+    autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
+
     set nocompatible
     syntax enable
     set background=dark         " Assume a dark background
@@ -16,6 +18,11 @@
     set mousehide               " Hide the mouse cursor while typing
     set t_Co=256
     scriptencoding utf-8
+
+    " Elixir syntax highlighting
+    au BufNewFile,BufRead *.ex set filetype=elixir
+    au BufNewFile,BufRead *.exs set filetype=elixir
+    au BufNewFile,BufRead *.eex set filetype=elixir
 
     if has('clipboard')
         if has('unnamedplus')  " When possible use + register for copy-paste
@@ -56,7 +63,17 @@
 
     set backspace=indent,eol,start  " Backspace for dummies
     set linespace=0                 " No extra spaces between rows
-    set number                      " Line numbers on
+    set relativenumber
+    
+    function! NumberToggle()
+      if(&relativenumber == 1)
+        set number
+      else
+        set relativenumber
+      endif
+    endfunc
+
+    nnoremap <C-n> :call NumberToggle()<cr>
     set showmatch                   " Show matching brackets/parenthesis
     set incsearch                   " Find as you type search
     set hlsearch                    " Highlight search terms
@@ -99,6 +116,9 @@
     " Wrapped lines goes down/up to next row, rather than next line in file.
     noremap j gj
     noremap k gk
+
+    " Toggle hard mode
+    nnoremap <leader>h <Esc>:call ToggleHardMode()<CR>
 
     " Fix common typos on commands
     command! -bang -nargs=* -complete=file E e<bang> <args>
@@ -163,6 +183,7 @@
 
     " Plugin List {
         " General {
+            Plugin 'wikitopian/hardmode'
             Plugin 'rking/ag.vim'
             Plugin 'scrooloose/nerdtree'
             Plugin 'altercation/vim-colors-solarized'
