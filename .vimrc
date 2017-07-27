@@ -7,8 +7,6 @@
         call vundle#rc("~/.dvim/.vim/bundle")
     " }
 
-    autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
-
     set nocompatible
     syntax enable
     set background=dark         " Assume a dark background
@@ -117,9 +115,6 @@
     noremap j gj
     noremap k gk
 
-    " Toggle hard mode
-    nnoremap <leader>h <Esc>:call ToggleHardMode()<CR>
-
     " Fix common typos on commands
     command! -bang -nargs=* -complete=file E e<bang> <args>
     command! -bang -nargs=* -complete=file W w<bang> <args>
@@ -183,7 +178,6 @@
 
     " Plugin List {
         " General {
-            Plugin 'wikitopian/hardmode'
             Plugin 'rking/ag.vim'
             Plugin 'scrooloose/nerdtree'
             Plugin 'altercation/vim-colors-solarized'
@@ -191,7 +185,6 @@
             Plugin 'spf13/vim-colors'
             Plugin 'tpope/vim-surround'
             Plugin 'tpope/vim-repeat'
-            Plugin 'jiangmiao/auto-pairs'
             Plugin 'ctrlpvim/ctrlp.vim'
             Plugin 'kristijanhusak/vim-multiple-cursors'
             Plugin 'matchit.zip'
@@ -228,16 +221,8 @@
             Plugin 'kchmck/vim-coffee-script'
         " }
         " HTML {
-            Plugin 'amirh/HTML-AutoCloseTag'
             Plugin 'hail2u/vim-css3-syntax'
             Plugin 'gorodinskiy/vim-coloresque'
-        " }
-
-        " Ruby {
-            Plugin 'tpope/vim-rails'
-            Plugin 'slim-template/vim-slim'
-            let g:rubycomplete_buffer_loading = 1
-            Plugin 'thoughtbot/vim-rspec'
         " }
 
         " Elixir {
@@ -247,10 +232,6 @@
         " }
 
         " Misc {
-            Plugin 'tpope/vim-markdown'
-            Plugin 'spf13/vim-preview'
-            Plugin 'tpope/vim-cucumber'
-            Plugin 'quentindecock/vim-cucumber-align-pipes'
         " }
 
     " }
